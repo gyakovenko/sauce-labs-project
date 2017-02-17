@@ -77,6 +77,5 @@ public class BasicTest {
 	@AfterMethod
 	public void tearDown() {
 		this.driver.quit();
-
 	}
 }

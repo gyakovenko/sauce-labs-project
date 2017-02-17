@@ -19,6 +19,15 @@ public class DataHelper {
 
 	private static Logger logger = Logger.getLogger(DataHelper.class);
 
+	// Replaces each array item with " . "
+	public static void clearArray(Object[][] array) {
+		for (int i = 0; i < array.length; i++) {
+			for (int j = 0; j < array[i].length; j++) {
+				array[i][j] = " . ";
+			}
+		}
+	}
+
 	public static void displayData(Object[][] data) {
 		// Display the data Object[][] to console using the logger.
 		for (int i = 0; i < data.length; i++) {
@@ -234,6 +243,37 @@ public class DataHelper {
 		return getTextFileData(fileLocation, fileName, textFormat, false, dataTypes);
 	}
 
+	public static Object[][] joinData(Object[][]... data) {
+		Object[][] newData = new Object[][] { {} };
+		// Object[][] finalData = null;
+		for (int i = 0; i < data.length; i++) {
+			newData = DataHelper.joinData(newData, data[i]);
+		}
+		return newData;
+	}
+
+	/**
+	 * joins multiple arrays
+	 * 
+	 * @param credentials
+	 * @param v
+	 * @return
+	 */
+	public static Object[][] joinData(Object[][] primaryArray, Object[][] joinArray) {
+		// Check for square Matrix and if not through an exception0
+		int totalDimX = primaryArray.length * joinArray.length;
+		int totalDimY = primaryArray[0].length + joinArray[0].length;
+		Object[][] data = new Object[totalDimX][totalDimY];
+		clearArray(data);
+		for (int i = 0; i < joinArray.length; i++) {
+			DataHelper.insertArray(data, primaryArray, primaryArray.length * i, 0);
+		}
+		for (int i = 0; i < primaryArray.length; i++) {
+			DataHelper.insertArray(data, joinArray, joinArray.length * i, primaryArray[0].length);
+		}
+		return data;
+	}
+
 	/**
 	 * Private method to convert data based on supplied DataType.
 	 *
@@ -390,6 +430,14 @@ public class DataHelper {
 			e.printStackTrace();
 		}
 		return results;
+	}
+
+	private static void insertArray(Object[][] origArray, Object[][] newData, int insertX, int insertY) {
+		for (int i = insertX, x = 0; i < newData.length + insertX; i++, x++) {
+			for (int j = insertY, y = 0; j < newData[x].length + insertY; j++, y++) {
+				origArray[i][j] = newData[x][y];
+			}
+		}
 	}
 
 	/**

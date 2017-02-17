@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite guice-stage="DEVELOPMENT" name="Failed suite [Default suite]">
+  <test verbose="2" name="Default test">
+    <classes>
+      <class name="com.sqa.gy.GeeboTestwSauceLabs"/>
+    </classes>
+  </test> <!-- Default test -->
+  <test name="Default test(failed)">
+    <classes>
+      <class name="com.sqa.gy.GeeboTestwSauceLabs">
+        <methods>
+          <include name="testGeebo" invocation-numbers="0 1 2 3 4 5 6 7"/>
+          <include name="setUpFirefox"/>
+          <include name="setUpSafari"/>
+          <include name="setUpChrome"/>
+          <include name="tearDown"/>
+        </methods>
+      </class> <!-- com.sqa.gy.GeeboTestwSauceLabs -->
+    </classes>
+  </test> <!-- Default test(failed) -->
+</suite> <!-- Failed suite [Default suite] -->
