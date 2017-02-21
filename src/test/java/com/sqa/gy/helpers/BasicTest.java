@@ -43,10 +43,6 @@ public class BasicTest {
 		this.baseUrl = baseUrl;
 	}
 
-	public void setDriver(WebDriver driver) {
-		this.driver = driver;
-	}
-
 	public void setLogger(Logger logger) {
 		this.logger = logger;
 	}
@@ -77,5 +73,9 @@ public class BasicTest {
 	@AfterMethod
 	public void tearDown() {
 		this.driver.quit();
+	}
+
+	protected void setDriver(WebDriver driver) {
+		this.driver = driver;
 	}
 }

@@ -9,8 +9,8 @@ import com.sqa.gy.helpers.exceptions.*;
 
 public class GeeboTestwSauceLabs extends SauceLabsTest {
 
-	public GeeboTestwSauceLabs(String baseUrl) {
-		super(baseUrl);
+	public GeeboTestwSauceLabs() {
+		super("http://geebo.com");
 	}
 
 	@Override
